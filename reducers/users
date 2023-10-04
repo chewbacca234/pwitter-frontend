@@ -1,0 +1,14 @@
+import { createSlice } from '@reduxjs/toolkit'
+
+const initialState = [];
+
+export const usersSlice = createSlice({
+    name: 'users',
+    initialState,
+    reducers: {
+        func: (state, action) => { },
+    }
+});
+
+export const { func } = usersSlice.actions;
+export default usersSlice.reducer ;
