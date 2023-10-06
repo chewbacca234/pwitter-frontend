@@ -1,0 +1,32 @@
+.container{
+
+display: flex;
+width: 100%; /* pour ne pas avoirla barre de defilement en bas */
+height: 100vh;
+}
+
+.leftSection{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+background-image: url("../public/images/fond_pwitter.jpg");
+background-size: cover;
+    width: 40vw;
+}
+
+.rightSection{
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 2rem;
+    width: 60vw;
+    background-color:#161d26 ;
+    color: white;
+}
+
+.h1{
+font-size: 3rem;
+    font-weight: 900;
+}
