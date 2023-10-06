@@ -5,15 +5,14 @@ const initialState = {
   username: null,
   firstname: null,
   picture: null,
+  likedList: [],
 };
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: (state, action) => {
-      state = action.payload;
-    },
+    login: (state, action) => state = action.payload,
     logout: (state) => {
       state = initialState;
     },

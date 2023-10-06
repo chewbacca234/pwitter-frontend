@@ -25,6 +25,7 @@ function App({ Component, pageProps }) {
       <PersistGate persistor={persistor}>
         <Head>
           <title>Pwitter</title>
+          <link rel="icon" href="/images/favicon.ico" />
         </Head>
         <Component {...pageProps} />
       </PersistGate>

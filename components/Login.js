@@ -1,72 +1,31 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styles from "../styles/Login.module.css";
+import { useState } from "react";
+import { Button, ConfigProvider, Modal } from "antd";
 import Image from "next/image";
-import { Modal, Button } from "antd";
+
+import SignUp from './SignUp';
+import SignIn from './SignIn';
 
 function Login() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [loadingModal, setLoadingModal] = useState(false);
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 
-  const [signUpUsername, setSignUpUsername] = useState("");
-  const [signUpPassword, setSignUpPassword] = useState("");
-  const [signInUsername, setSignInUsername] = useState("");
-  const [signInPassword, setSignInPassword] = useState("");
-
-  const showModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const showSignUpModal = () => {
+    setIsSignUpModalOpen(!isSignUpModalOpen);
   };
-  
-  let modalContent;
-  if (!user.token) {
-    modalContent = (
-      <div className={styles.registerContainer}>
-        <div className={styles.registerSection}>
-          <p>Sign-up</p>
-          <input
-            type="text"
-            placeholder="Username"
-            id="signUpUsername"
-            onChange={(e) => setSignUpUsername(e.target.value)}
-            value={signUpUsername}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            id="signUpPassword"
-            onChange={(e) => setSignUpPassword(e.target.value)}
-            value={signUpPassword}
-          />
-          <button id="register" onClick={() => handleRegister()}>
-            Register
-          </button>
-        </div>
-        <div className={styles.registerSection}>
-          <p>Sign-in</p>
-          <input
-            type="text"
-            placeholder="Username"
-            id="signInUsername"
-            onChange={(e) => setSignInUsername(e.target.value)}
-            value={signInUsername}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            id="signInPassword"
-            onChange={(e) => setSignInPassword(e.target.value)}
-            value={signInPassword}
-          />
-          <button id="connection" onClick={() => handleConnection()}>
-            Connect
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const showSignInModal = () => {
+    setIsSignInModalOpen(!isSignInModalOpen);
+  };
+
+  const handleSignUpCancel = () => {
+    showSignUpModal();
+  };
+
+  const handleSignInCancel = () => {
+    showSignInModal();
+  };
+
   return (
     <div className={styles.container}>
       {/* Left Section */}
@@ -86,18 +45,51 @@ function Login() {
           width={50}
           height={50}
         ></Image>
-        {isModalOpen && (
-          <div id="react-modals">
-            <Modal
-              getContainer="#react-modals"
-              className={styles.modal}
-              open={isModalOpen}
-              closable={true}
-              footer={null}
-            >
-              {modalContent}
-            </Modal>
-          </div>
+
+        {/* Modal */}
+        {isSignUpModalOpen && (
+          <ConfigProvider
+            theme={{
+              token: {
+                colorBgElevated: '#161d28',
+                colorText: 'white',
+              },
+            }}>
+            <div id="react-modals">
+              <Modal
+                getContainer="#react-modals"
+                open={isSignUpModalOpen}
+                onOk={null}
+                onCancel={handleSignUpCancel}
+                closable={true}
+                footer={null}
+              >
+                <SignUp showSignUpModal={showSignUpModal} />
+              </Modal>
+            </div>
+          </ConfigProvider>
+        )}
+        {isSignInModalOpen && (
+          <ConfigProvider
+            theme={{
+              token: {
+                colorBgElevated: '#161d28',
+                colorText: 'white',
+              },
+            }}>
+            <div id="react-modals">
+              <Modal
+                getContainer="#react-modals"
+                open={isSignUpModalOpen}
+                onOk={null}
+                onCancel={handleSignInCancel}
+                closable={true}
+                footer={null}
+              >
+                <SignIn showSignInModal={showSignInModal} />
+              </Modal>
+            </div>
+          </ConfigProvider>
         )}
 
         <h1 className={styles.title}>See what's happening</h1>
@@ -105,17 +97,15 @@ function Login() {
         <Button
           type="primary"
           shape="round"
-          size={'middle'}
           className={styles.btn}
-          onClick={showModal}
+          onClick={showSignUpModal}
         >Sign up</Button>
         <h3>Already have an account?</h3>
         <Button
           type="primary"
           shape="round"
-          size={'middle'}
           className={styles.btn}
-          onClick={showModal}
+          onClick={showSignInModal}
         >Sign in</Button>
       </div>
     </div>

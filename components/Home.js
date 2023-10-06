@@ -22,7 +22,7 @@ function Home() {
 
           <Image
             className={styles.logo}
-            src={user.picture}
+            src={'/images/'+ user.picture}
             alt="user picture"
             width={50}
             height={50}
