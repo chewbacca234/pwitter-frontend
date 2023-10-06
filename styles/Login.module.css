@@ -1,7 +1,7 @@
 .container{
 
 display: flex;
-width: 100%; /* pour ne pas avoirla barre de defilement en bas */
+width: 100%; /* pour ne pas avoir la barre de defilement en bas */
 height: 100vh;
 }
 

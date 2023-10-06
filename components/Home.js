@@ -1,14 +1,37 @@
-import styles from '../styles/Home.module.css';
+import { Button } from "antd";
+import styles from "../styles/Home.module.css";
+import Image from "next/image";
+import { useSelector } from "react-redux";
 
 function Home() {
+  const user = useSelector((state) => state.user);
+
   return (
-    <div>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-      </main>
-    </div>
+    <main className={styles.main}>
+      <div classname={styles.containerLeft}>
+        <Image
+          className={styles.logo}
+          src="/logo_pwitter.png"
+          alt="logo pwitter"
+          width={30}
+          height={25}
+        ></Image>
+        <div classname={styles.userInfo}>
+          <span className={styles.userInfos}>{user.username}</span>
+          <span className={styles.userInfos}>{user.firstname}</span>
+
+          <Image
+            className={styles.logo}
+            src={user.picture}
+            alt="user picture"
+            width={50}
+            height={50}
+          ></Image>
+        </div>
+
+        <Button>Logout</Button>
+      </div>
+    </main>
   );
 }
 
