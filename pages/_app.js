@@ -6,7 +6,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
-import { user } from '../reducers/user'
+import user from '../reducers/user'
 
 const reducers = combineReducers({ user });
 const persistConfig = { key: 'pwitter', storage };
