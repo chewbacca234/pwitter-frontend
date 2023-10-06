@@ -1,15 +1,15 @@
 import '../styles/globals.css';
 import Head from 'next/head';
+
 import { Provider } from 'react-redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
-import storage from 'redux-persist/lib/storage';
-import { users } from '../reducers/users'
-
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
+import { user } from '../reducers/user'
 
-const reducers = combineReducers({ users });
-const persistConfig = { key: 'applicationName', storage };
+const reducers = combineReducers({ user });
+const persistConfig = { key: 'pwitter', storage };
 
 const store = configureStore({
   reducer: persistReducer(persistConfig, reducers),
@@ -27,7 +27,6 @@ function App({ Component, pageProps }) {
         </Head>
         <Component {...pageProps} />
       </PersistGate>
-
     </Provider>
   );
 }
