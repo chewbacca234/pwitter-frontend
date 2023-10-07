@@ -1,11 +1,11 @@
-import Login from "../components/Login";
-import Home from "../components/Home";
 import { useSelector } from "react-redux";
+import { useRouter } from 'next/router';
 
 function Index() {
   const user = useSelector((state) => state.user);
+  const router = useRouter()
 
-  return !user.token ? <Login /> : <Home />;
+  !user.token ? router.push('/login') : router.push('/home');
 }
 
 export default Index;

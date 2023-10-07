@@ -2,7 +2,8 @@ import styles from '../styles/SignUpIn.module.css';
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { login } from '../reducers/user'
-import { Button, Input } from "antd";
+import { Button, Input, notification } from "antd";
+import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import Image from 'next/image'
 
 function SignIn(props) {
@@ -12,6 +13,15 @@ function SignIn(props) {
   const [password, setPassword] = useState("");
 
   const [loadingModal, setLoadingModal] = useState(false);
+
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = (error) => {
+    api['error']({
+      message: 'Can\'t sign up!',
+      description: error,
+    });
+  }
 
   const handleSignIn = () => {
     setLoadingModal(true);
@@ -32,6 +42,9 @@ function SignIn(props) {
           setPassword("");
           setLoadingModal(false);
           props.showSignInModal();
+        } else {
+          setLoadingModal(false);
+          openNotification(data.error);
         }
       });
   };
@@ -53,14 +66,16 @@ function SignIn(props) {
         onChange={(e) => setUsername(e.target.value)}
         value={username}
       />
-      <Input
+      <Input.Password
         className={styles.input}
+        iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
         type="password"
         placeholder="Password"
         id="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
       />
+      {contextHolder}
       <Button
         className={styles.btn}
         key="signup"

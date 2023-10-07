@@ -24,15 +24,21 @@ h3 {
   font-size: 0.8rem;
 }
 
-.ant-input {
+.ant-input, .ant-input-affix-wrapper, .ant-input-password {
   color: white;
   width: 200px;
-}
+  background-color: #161d28;
+  border: 1px solid #245586;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 4px;}
 
 .ant-input::placeholder {
   color: gray;
 }
 
-.ant-modal-close-x {
+.ant-modal-close-x, 
+.ant-input-affix-wrapper .anticon.ant-input-password-icon,
+.anticon {
   color: white;
 }
