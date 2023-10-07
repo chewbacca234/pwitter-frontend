@@ -3,62 +3,76 @@ import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { useRouter } from 'next/router';
+import { logout } from '../reducers/user'
 
 function Home() {
   const user = useSelector((state) => state.user);
-  const router = useRouter()
   const [pwittInput, setPwittInput] = useState("");
+  const dispatch = useDispatch();
 
-  if (!user.token) {
-    router.push('/login');
-  } else {
-    return (
-      <main className={styles.main}>
-        <div classname={styles.containerLeft}>
-          <Image
-            className={styles.logo}
-            src="/logo_pwitter.png"
-            alt="logo pwitter"
-            width={30}
-            height={25}
-          ></Image>
-          <div classname={styles.userInfo}>
-            <span className={styles.userInfos}>{user.username}</span>
-            <span className={styles.userInfos}>{user.firstname}</span>
+  // Get all hashtags from a pwitt
+  function extractHashtags(pwitt) {
+  const hashtagRegex = /#(\w+)/g;
+  const hashtags = message.match(hashtagRegex);
 
+  return hashtags || null;
+}
+  return (
+    <main className={styles.main}>
+      <div className={styles.containerLeft}>
+        <Image
+          src="/images/logo_pwitter_50_50_v2.png"
+          alt="logo pwitter"
+          width={50}
+          height={50}
+        ></Image>
+        <div className={styles.userContainer}>
+          <div className={styles.userSection}>
             <Image
-              className={styles.logo}
-              src={'/images/' + user.picture}
+              src={user.picture}
               alt="user picture"
               width={50}
               height={50}
             ></Image>
+            <div className={styles.userInfo}>
+              <h3 className={styles.firstname}>{user.firstname}</h3>
+              <p className={styles.username}>@{user.username}</p>
+            </div>
           </div>
 
-          <Button>Logout</Button>
+          <Button
+            type="default"
+            shape="round"
+            className={styles.btn}
+            onClick={() => dispatch(logout())}
+          >Logout</Button>
         </div>
+      </div>
 
-        <div className={styles.containerMid}>
-          <h2>Home</h2>
-          <span>
-            <input
-              placeholder="What's up?"
-              onChange={(e) => setPwittInput(e.target.value)}
-              value={pwittInput}
-              className={styles.input}
-            />
-            <button onClick={() => handleClick()} className={styles.button}>
-              Pwitt
-            </button>
-          </span>
-        </div>
-        <div className={styles.containerRight}>
-          <h2>Trends</h2>
-        </div>
-      </main>
-    );
-  }
+      <div className={styles.containerMid}>
+        <h2>Home</h2>
+        <span>
+          <input
+            placeholder="What's up?"
+            onChange={(e) => setPwittInput(e.target.value)}
+            value={pwittInput}
+            className={styles.input}
+          />
+          <Button
+            type="primary"
+            shape="round"
+            size='small'
+            // TODO handle  click => fetch backend to post pwitt
+            onClick={null}>
+            Pwitt
+          </Button>
+        </span>
+      </div>
+      <div className={styles.containerRight}>
+        <h2>Trends</h2>
+      </div>
+    </main>
+  );
 }
 
 export default Home;

@@ -1,31 +1,71 @@
-.main{
+.main {
   display: flex;
-  width: 100%; /* pour ne pas avoir la barre de defilement en bas */
+  /* width set to 100% so we don't see the horizontal scrollbar */
+  width: 100%;
   height: 100vh;
-  background-size: cover;
-  background-color:#161d26;
-  color:white;
+  background-color: #161d26;
+  color: white;
+  padding: 0 1rem;
 }
 
-.containerLeft{
-  display: flex;
-  justify-content: left;
-  align-items: center;
-width: 20%;
-}
-.containerMid{
+.containerLeft {
   display: flex;
   flex-direction: column;
-  
-  /* justify-content: center; */
-  align-items: center;
-width: 60%;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex: 1;
+  border-right: 1px solid grey;
+  padding: 12px 0 20px 0;
 }
-.containerRight{
+
+.userContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+.userSection {
+  display: flex;
+  width: 100%;
+  gap: .8rem;
+  margin-bottom: 30px;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.username {
+  color: grey;
+  margin: 0;
+}
+
+.firstname {
+  margin: 0;
+}
+
+.btn {
+  background-color: #161d26;
+  color: white;
+}
+
+.containerMid {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  flex: 2;
+}
+
+.containerRight {
   display: flex;
   flex-direction: column;
   align-items: center;
-width: 20%;
-border-left: white 2px;
+  flex: 1;
+  border-left: white 2px;
 
 }

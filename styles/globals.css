@@ -24,6 +24,12 @@ h3 {
   font-size: 0.8rem;
 }
 
+p {
+  font-family: 'Verdana', 'Geneva', 'sans-serif';
+font-weight: 400;
+font-size: small;
+}
+
 .ant-input, .ant-input-affix-wrapper, .ant-input-password {
   color: white;
   width: 200px;

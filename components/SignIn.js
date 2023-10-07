@@ -37,7 +37,7 @@ function SignIn(props) {
       .then((response) => response.json())
       .then((data) => {
         if (data.result) {
-          dispatch(login({ username: username, token: data.token }));
+          dispatch(login(data.userInfo));
           setUsername("");
           setPassword("");
           setLoadingModal(false);
