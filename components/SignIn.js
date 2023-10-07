@@ -21,7 +21,7 @@ function SignIn(props) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: username,
-        password: signInPassword,
+        password: password,
       }),
     })
       .then((response) => response.json())
@@ -29,7 +29,7 @@ function SignIn(props) {
         if (data.result) {
           dispatch(login({ username: username, token: data.token }));
           setUsername("");
-          setSignInPassword("");
+          setPassword("");
           setLoadingModal(false);
           props.showSignInModal();
         }
@@ -39,7 +39,7 @@ function SignIn(props) {
   return (
     <div className={styles.container}>
       <Image
-        src="/images/logo_pwitter_50_50.png"
+        src="/images/logo_pwitter_50_50_v2.png"
         alt="logo pwitter"
         width={50}
         height={50}

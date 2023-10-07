@@ -12,9 +12,11 @@ function Login() {
   const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 
   const showSignUpModal = () => {
+    setIsSignInModalOpen(false);
     setIsSignUpModalOpen(!isSignUpModalOpen);
   };
   const showSignInModal = () => {
+    setIsSignUpModalOpen(false);
     setIsSignInModalOpen(!isSignInModalOpen);
   };
 
@@ -31,7 +33,7 @@ function Login() {
       {/* Left Section */}
       <div className={styles.leftSection}>
         <Image
-          src="/images/logo_pwitter_600_600.png"
+          src="/images/logo_pwitter_600_600_v2.png"
           alt="logo pwitter"
           width={300}
           height={300}
@@ -40,7 +42,7 @@ function Login() {
       {/* Right Section */}
       <div className={styles.rightSection}>
         <Image
-          src="/images/logo_pwitter_50_50.png"
+          src="/images/logo_pwitter_50_50_v2.png"
           alt="logo pwitter"
           width={50}
           height={50}
@@ -80,7 +82,7 @@ function Login() {
             <div id="react-modals">
               <Modal
                 getContainer="#react-modals"
-                open={isSignUpModalOpen}
+                open={isSignInModalOpen}
                 onOk={null}
                 onCancel={handleSignInCancel}
                 closable={true}

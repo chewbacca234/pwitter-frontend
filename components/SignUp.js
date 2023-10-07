@@ -43,7 +43,7 @@ function SignUp(props) {
   return (
     <div className={styles.container}>
       <Image
-        src="/images/logo_pwitter_50_50.png"
+        src="/images/logo_pwitter_50_50_v2.png"
         alt="logo pwitter"
         width={50}
         height={50}
